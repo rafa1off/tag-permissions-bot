@@ -11,7 +11,7 @@ intents = discord.Intents.all()
 client = discord.Client(intents=intents)
 bot = commands.Bot(command_prefix='$', intents=intents)
 
-@bot.command(name='add')
+@bot.command(name='add', help='Add user with permissions to view channel, send messages and add reactions')
 @commands.has_permissions(administrator=True)
 async def add(ctx, *users: discord.Member):
     for user in users:
@@ -23,7 +23,7 @@ async def add_error(ctx, error):
     if isinstance(error, commands.MissingPermissions):
         await ctx.send('Not enough permissions')
 
-@bot.command(name='remove')
+@bot.command(name='remove', help='Remove added users')
 @commands.has_permissions(administrator=True)
 async def remove(ctx, *users: discord.Member):
     for user in users:
